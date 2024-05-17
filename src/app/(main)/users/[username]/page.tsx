@@ -2,40 +2,19 @@ import UserTabs from "@/components/users/UserTabs";
 import Image from "next/image";
 import Link from "next/link";
 import imageProfile from "../../../../../public/agus-profile.jpg"
+import { User } from "@/types/user.types";
 
-const UserPage = ({params}:{params: {username: string}}) => {
-  const user = {
-    username: params.username,
-    name: "Agustina Mastricola",
-    bio: "Yo soy ...",
-    followersCount: 5,
-    followingCount: 10,
-    messages: [
-      {
-        name: "Juliana Rodriguez",
-        username:"juliRodriguez",
-        message: "Hola Agus, hoy tenemos reunion",
-        repliesCount: 2
-      },
-      {
-        name: "Carla Fernandez",
-        username:"carfernandez",
-        message: "Hola Agus, vas a la reunion de hoy?",
-        repliesCount: 3
-      }
-    ],
-    replies: [
-      {
-        message: "Siii, nos vemos a las 16 hs.",
-        repliesCount: 0
-      },
-      {
-        message: "Si!! vos vas?",
-        repliesCount: 0
-      },
-    ]
+const getUserData = async (username:string): Promise<User> => {
+  const res = await fetch(`http://localhost:8080/api/public/users/${username}`)
+  if(!res.ok){
+    throw new Error("No se encontró el usuario")
   }
+  return res.json()
+}
 
+const UserPage = async ({params}:{params: {username: string}}) => {
+  const user = await getUserData(params.username)
+  
   return (
     <main className="flex flex-col bg-gray-100 p-8">
       <section className="flex flex-col mb-8">
@@ -65,7 +44,7 @@ const UserPage = ({params}:{params: {username: string}}) => {
         </div>
       </section>
       
-      <UserTabs messages={user.messages} replies={[]}/>
+      <UserTabs messages={[]}replies={[]}/>
     </main>
   )
 }
