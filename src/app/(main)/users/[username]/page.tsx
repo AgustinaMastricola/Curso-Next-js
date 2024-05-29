@@ -1,8 +1,7 @@
 import UserTabs from "@/components/users/UserTabs";
-import Image from "next/image";
-import Link from "next/link";
-import imageProfile from "../../../../../public/agus-profile.jpg"
+import Link from "../../../../../node_modules/next/link";
 import { User } from "@/types/user.types";
+import Image from "../../../../../node_modules/next/image";
 
 const getUserData = async (username:string): Promise<User> => {
   const res = await fetch(`http://localhost:8080/api/public/users/${username}`)
@@ -21,7 +20,7 @@ const UserPage = async ({params}:{params: {username: string}}) => {
         <div className="mb-4 block relative w-20 h-20">
           <Image 
             className="rounded-full"
-            src={imageProfile} 
+            src={'hola'}
             alt={`Foto de perfil de ${user.name}`}
             fill
             priority
