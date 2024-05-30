@@ -1,12 +1,12 @@
 import UserTabs from "@/components/users/UserTabs";
 import Link from "../../../../../node_modules/next/link";
-import { User } from "@/types/user.types";
+import { UserType } from "@/types/user.types";
 import Image from "../../../../../node_modules/next/image";
 
-const getUserData = async (username:string): Promise<User> => {
+const getUserData = async (username:string): Promise<UserType> => {
   const res = await fetch(`http://localhost:8080/api/public/users/${username}`)
   if(!res.ok){
-    throw new Error("No se encontró el usuario")
+    console.log("No se encontró el usuario")
   }
   return res.json()
 }
@@ -20,11 +20,10 @@ const UserPage = async ({params}:{params: {username: string}}) => {
         <div className="mb-4 block relative w-20 h-20">
           <Image 
             className="rounded-full"
-            src={'hola'}
+            src={user.photoUrl}
             alt={`Foto de perfil de ${user.name}`}
             fill
             priority
-            placeholder="blur"
           />
         </div>
         <h2 className="mb-1">{user.name}</h2>
