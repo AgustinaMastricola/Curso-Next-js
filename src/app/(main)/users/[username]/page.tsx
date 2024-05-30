@@ -1,18 +1,11 @@
 import UserTabs from "@/components/users/UserTabs";
 import Link from "../../../../../node_modules/next/link";
-import { UserType } from "@/types/user.types";
 import Image from "../../../../../node_modules/next/image";
-
-const getUserData = async (username:string): Promise<UserType> => {
-  const res = await fetch(`http://localhost:8080/api/public/users/${username}`)
-  if(!res.ok){
-    console.log("No se encontró el usuario")
-  }
-  return res.json()
-}
+import { getUserData, getUserMessages } from "@/services/api.service";
 
 const UserPage = async ({params}:{params: {username: string}}) => {
   const user = await getUserData(params.username)
+  const userMessages = await getUserMessages(params.username)
   
   return (
     <main className="flex flex-col bg-gray-100 p-8">
@@ -42,7 +35,7 @@ const UserPage = async ({params}:{params: {username: string}}) => {
         </div>
       </section>
       
-      <UserTabs messages={[]}replies={[]}/>
+      <UserTabs messages={userMessages.content}replies={[]}/>
     </main>
   )
 }
