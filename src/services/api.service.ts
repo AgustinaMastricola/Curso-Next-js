@@ -19,3 +19,10 @@ export const getUserMessages = async (username:string): Promise<PageType<Message
     }
     return res.json()
 }
+export const getUserReplies = async (username:string): Promise<PageType<MessageType>> => {
+  const res = await fetch(`${API_URL_PUBLIC}/users/${username}/messages/replies`)
+  if(!res.ok){
+    throw new Error("No se encontraron respuestas")
+  }
+  return res.json()
+}
