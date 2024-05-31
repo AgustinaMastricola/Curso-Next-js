@@ -1,12 +1,12 @@
 import UserTabs from "@/components/users/UserTabs";
 import Link from "../../../../../node_modules/next/link";
 import Image from "../../../../../node_modules/next/image";
-import { getUserData, getUserMessages, getUserReplies } from "@/services/api.service";
+import userAPI from "@/services/users/users.service";
 
 const UserPage = async ({params}:{params: {username: string}}) => {
-  const userPromise = getUserData(params.username)
-  const userMessagesPromise = getUserMessages(params.username)
-  const userRepliesPromise = getUserReplies(params.username)
+  const userPromise = userAPI.getUserData(params.username)
+  const userMessagesPromise = userAPI.getUserMessages(params.username)
+  const userRepliesPromise = userAPI.getUserReplies(params.username)
   const [user, userMessages, userReplies] = await Promise.all([ userPromise, userMessagesPromise, userRepliesPromise ])
   
   return (
