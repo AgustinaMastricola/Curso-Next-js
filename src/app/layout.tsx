@@ -6,7 +6,7 @@ import Menu from "@/components/menu/Menu";
 const links = [
   {href:"/" , title:"Inicio"},
   {href:"/explore", title:"Explorar"},
-  {href:"/users/agusmastricola", title: "Mi Perfil"}
+  {href:"/users/leia", title: "Mi Perfil"}
 ]
 
 const montserrat = Montserrat({ 
