@@ -1,6 +1,4 @@
-import { MessageType } from "@/types/message.types"
 import { PageType } from "@/types/pagination.types"
-import { UserType } from "@/types/user.types"
 import { httpGet } from "../common/http.service"
 import { Hashtag } from "@/types/tending.types"
 import { URLSearchParams } from "url"
