@@ -1,23 +1,11 @@
 import ExploreTrending from "@/components/explore/ExploreTrending"
-const hashesList = [
-  {
-    title: "Argentina",
-    counter: 1253
-  },
-  {
-    title: "HolaMundo",
-    counter: 1025
-  },
-  {
-    title: "Hola",
-    counter: 425
-  },
-]
+import exploreAPI from "@/services/explore/explore.service"
 
-const ExplorePage = () => {
+const ExplorePage = async () => {
+  const hashes = await exploreAPI.getTrendingHashtag(0,3)
   return (
     <div>
-      <ExploreTrending hashes={hashesList}/>
+      <ExploreTrending hashes={hashes.content}/>
     </div>
   )
 }

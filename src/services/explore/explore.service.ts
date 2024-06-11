@@ -1,11 +1,13 @@
 import { PageType } from "@/types/pagination.types"
-import { httpGet } from "../common/http.service"
-import { Hashtag } from "@/types/tending.types"
+import { httpGetPublic } from "../common/http.service"
+import { TrendingHashtag } from "@/types/trending.types"
 import { URLSearchParams } from "url"
 
 class ExploreAPI {
-    getTrendingHashtag = async (page:number, size:number): Promise<PageType<Hashtag>> => 
-        httpGet(`explore/trending`, new URLSearchParams({page: `${page}`, size: `${size}`}))
+    getTrendingHashtag = async (page:number, size:number): Promise<PageType<TrendingHashtag>> => 
+        httpGetPublic(`/explore/trending`, new URLSearchParams({page: `${page}`, size: `${size}`}))
+    getFollowRecomendations = async (page:number, size:number): Promise<PageType<TrendingHashtag>> => 
+        httpGetPublic(`/explore/follow-recommendations`, new URLSearchParams({page: `${page}`, size: `${size}`}))
 }
 
 const exploreAPI = new ExploreAPI();

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Menu from "@/components/menu/Menu";
+import ExploreTrending from "@/components/explore/ExploreTrending";
 
 const links = [
   {href:"/" , title:"Inicio"},
