@@ -9,3 +9,10 @@ export type UserType = {
   followingCount: number,
   messageCount: number,
 }
+export type TrendingUserType = {
+  id: string,
+  username: string,
+  name: string,
+  photoUrl: string,
+  count: number,
+}
